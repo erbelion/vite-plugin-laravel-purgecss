@@ -1,0 +1,38 @@
+{
+  "name": "@erbelion/vite-plugin-laravel-purgecss",
+  "version": "0.1.0",
+  "description": "A Vite plugin that integrates PurgeCSS with Laravel template assets.",
+  "author": "erbelion",
+  "keywords": [
+    "vite",
+    "vite-plugin",
+    "purgecss",
+    "laravel"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erbelion/vite-plugin-laravel-purgecss.git"
+  },
+  "bugs": {
+    "url": "https://github.com/erbelion/vite-plugin-laravel-purgecss/issues"
+  },
+  "homepage": "https://github.com/erbelion/vite-plugin-laravel-purgecss#readme",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts"
+  },
+  "devDependencies": {
+    "@types/node": "^16.10.8",
+    "tsup": "^5.4.0",
+    "typescript": "^4.4.4"
+  },
+  "peerDependencies": {
+    "vite": "^3.0.0"
+  },
+  "dependencies": {
+    "purgecss": "^4.1.1",
+    "vite": "^3.0.0"
+  }
+}
