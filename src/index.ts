@@ -1,4 +1,5 @@
-import PurgeCSS, { UserDefinedSafelist } from "purgecss"
+import PurgeCSS, { UserDefinedSafelist } from 'purgecss'
+import getTemplatePaths from './getTemplatePaths'
 
 type Options = {
     templates?: string[],
@@ -15,48 +16,8 @@ export default (options?: Options) => {
             if (!cssFiles) return
             
             let paths = []
-            options?.paths?.forEach(path => { paths.push(path) })
-            options?.templates?.forEach(path => {
-                switch(path){
-                    case 'blade':
-                        paths.push(
-                            'resources/views/**/*.blade.php'
-                        )
-                        break
-                    case 'svelte':
-                        paths.push(
-                            'resources/js/**/*.svelte',
-                            'resources/views/**/*.svelte'
-                        )
-                        break
-                    case 'vue':
-                        paths.push(
-                            'resources/js/**/*.vue',
-                            'resources/views/**/*.vue'
-                        )
-                        break
-                    case 'react':
-                        paths.push(
-                            'resources/js/**/*.tsx',
-                            'resources/js/**/*.ts',
-                            'resources/js/**/*.jsx',
-                            'resources/js/**/*.js',
-                            'resources/js/**/*.html',
-                            'resources/views/**/*.tsx',
-                            'resources/views/**/*.ts',
-                            'resources/views/**/*.jsx',
-                            'resources/views/**/*.js',
-                            'resources/views/**/*.html'
-                        )
-                        break
-                    case 'angular':
-                        paths.push(
-                            'resources/js/**/*.html',
-                            'resources/views/**/*.html'
-                        )
-                        break
-                }
-            })
+            options?.paths?.forEach(path => paths.push(path))
+            options?.templates?.forEach(template => paths.push(...getTemplatePaths(template)))
 
             for (const file of cssFiles) {
                 const purged = await new PurgeCSS().purge({
