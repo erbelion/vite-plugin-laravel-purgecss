@@ -1,5 +1,5 @@
 import PurgeCSS, { UserDefinedSafelist } from 'purgecss'
-import getTemplatePaths from './getTemplatePaths'
+import getTemplatePath from './getTemplatePath'
 
 type Options = {
     templates?: string[],
@@ -17,7 +17,7 @@ export default (options?: Options) => {
             
             let paths = []
             options?.paths?.forEach(path => paths.push(path))
-            options?.templates?.forEach(template => paths.push(...getTemplatePaths(template)))
+            options?.templates?.forEach(template => paths.push(getTemplatePath(template)))
 
             for (const file of cssFiles) {
                 const purged = await new PurgeCSS().purge({
