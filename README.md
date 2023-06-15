@@ -56,7 +56,7 @@ export default {
 }
 ```
 
-**Via custom path + always keep `#bruh`, `.nice-button` and `h1` styling:**
+**Via custom paths + always keep `#bruh`, `.nice-button` and `h1` styling:**
 ```
 import purge from '@erbelion/vite-plugin-laravel-purgecss'
 
@@ -64,7 +64,10 @@ export default {
     plugins: [
         laravel(...),
         purge({
-            paths: ['resources/views/**/*.blade.php'],
+            paths: [
+                'resources/views/**/*.blade.php',
+                'resources/{js,views}/**/*.vue'
+            ],
             safelist: ['bruh', 'nice-button', 'h1']
         })
     ]
