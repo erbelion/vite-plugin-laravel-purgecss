@@ -2,11 +2,13 @@
 
 [![Get package from npm](https://img.shields.io/npm/v/@erbelion/vite-plugin-laravel-purgecss?logo=npm&logoColor=white&style=flat&label=)](https://www.npmjs.com/package/@erbelion/vite-plugin-laravel-purgecss) [![Downloads](https://img.shields.io/npm/dt/@erbelion/vite-plugin-laravel-purgecss?color=blue&label=&logoColor=white&style=flat&logo=data:image/svg%2bxml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjZmZmZmZmIj48ZyBpZD0iU1ZHUmVwb19iZ0NhcnJpZXIiIHN0cm9rZS13aWR0aD0iMCI+PC9nPjxnIGlkPSJTVkdSZXBvX3RyYWNlckNhcnJpZXIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PC9nPjxnIGlkPSJTVkdSZXBvX2ljb25DYXJyaWVyIj4gPHBhdGggZD0iTTEyLjUgNFYxN00xMi41IDE3TDcgMTIuMjEwNU0xMi41IDE3TDE4IDEyLjIxMDUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjwvcGF0aD4gPHBhdGggZD0iTTYgMjFIMTkiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjwvcGF0aD4gPC9nPjwvc3ZnPg==)](https://www.npmjs.com/package/@erbelion/vite-plugin-laravel-purgecss) [![Downloads](https://img.shields.io/npm/dw/@erbelion/vite-plugin-laravel-purgecss?color=blue&label=&logoColor=white&style=flat&logo=data:image/svg%2bxml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjZmZmZmZmIj48ZyBpZD0iU1ZHUmVwb19iZ0NhcnJpZXIiIHN0cm9rZS13aWR0aD0iMCI+PC9nPjxnIGlkPSJTVkdSZXBvX3RyYWNlckNhcnJpZXIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PC9nPjxnIGlkPSJTVkdSZXBvX2ljb25DYXJyaWVyIj4gPHBhdGggZD0iTTEyLjUgNFYxN00xMi41IDE3TDcgMTIuMjEwNU0xMi41IDE3TDE4IDEyLjIxMDUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjwvcGF0aD4gPHBhdGggZD0iTTYgMjFIMTkiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjwvcGF0aD4gPC9nPjwvc3ZnPg==)](https://www.npmjs.com/package/@erbelion/vite-plugin-laravel-purgecss) [![views](https://views.erbek.space/api/views.svg?id=github.com%2Ferbelion%2Fvite-plugin-laravel-purgecss)](https://views.erbek.space/page/?id=github.com%2Ferbelion%2Fvite-plugin-laravel-purgecss)
 
-A [Vite](https://github.com/vitejs/vite) plugin that integrates [PurgeCSS](https://github.com/FullHuman/purgecss) with [Laravel 10/9](https://github.com/laravel/laravel) template assets.
+A [Vite](https://github.com/vitejs/vite) plugin that integrates [PurgeCSS](https://github.com/FullHuman/purgecss) with [Laravel 10/9](https://github.com/laravel/laravel) template assets. Currently updated to Laravel 10.13.
 
-Apart from Blade, it also supports frontend frameworks such as Svelte, Vue, React and Angular. It works well with [Inertia](https://github.com/inertiajs/inertia).
+It supports Blade, Svelte, Vue, React and Angular. It works well with [Inertia](https://github.com/inertiajs/inertia).
 
-## Installation
+It purges assets only on production mode (`yarn build`/`npm run build`).
+
+## Installation (Laravel 10)
 
 **yarn**
 
@@ -20,17 +22,50 @@ yarn add -D @erbelion/vite-plugin-laravel-purgecss
 npm i -D @erbelion/vite-plugin-laravel-purgecss
 ```
 
-## Usage
+Click [here](https://github.com/erbelion/vite-plugin-laravel-purgecss/blob/main/old/laravel9.md) for Laravel 9 installation instructions.
+
+## Usage examples
 
 Use plugin in your Vite config (`vite.config.ts`)
 
+**Via ready [template](#templates):**
 ```
 import purge from '@erbelion/vite-plugin-laravel-purgecss'
 
 export default {
     plugins: [
+        laravel(...),
         purge({
             templates: ['blade']
+        })
+    ]
+}
+```
+
+**Via custom path:**
+```
+import purge from '@erbelion/vite-plugin-laravel-purgecss'
+
+export default {
+    plugins: [
+        laravel(...),
+        purge({
+            paths: ['resources/views/**/*.blade.php']
+        })
+    ]
+}
+```
+
+**Via custom path + always keep `#bruh`, `.nice-button` and `h1` styling:**
+```
+import purge from '@erbelion/vite-plugin-laravel-purgecss'
+
+export default {
+    plugins: [
+        laravel(...),
+        purge({
+            paths: ['resources/views/**/*.blade.php'],
+            safelist: ['bruh', 'nice-button', 'h1']
         })
     ]
 }
@@ -40,7 +75,7 @@ export default {
 
 | Parameter                | Type                  | Description                                                                                           |
 | ------------------------ | --------------------- | ----------------------------------------------------------------------------------------------------- |
-| [templates](#templates)? | `string[]`            | List of templates to be processed by PurgeCSS. [See below](#templates).                               |
+| [templates](#templates)? | `string[]`            | List of ready paths to be processed by PurgeCSS. [See below](#templates).                               |
 | paths?                   | `string[]`            | List of paths to be processed by PurgeCSS.                                                            |
 | safelist?                | `UserDefinedSafelist` | Check available safelist options in [PurgeCSS docs](https://purgecss.com/configuration.html#options). |
 
