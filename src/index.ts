@@ -1,4 +1,4 @@
-import { PurgeCSS, UserDefinedSafelist } from "purgecss"
+import { PurgeCSS, UserDefinedSafelist, Extractors } from "purgecss"
 import getTemplatePath from "./getTemplatePath"
 import { Plugin } from "vite"
 import { OutputBundle, OutputAsset } from "vite/node_modules/rollup/dist/rollup"
@@ -7,6 +7,7 @@ type Options = {
     templates?: string[]
     paths?: string[]
     safelist?: UserDefinedSafelist
+    extractors?: Extractors[]
 }
 
 const isOutputAsset = (
@@ -36,6 +37,7 @@ export default (options?: Options): Plugin => {
                     content: paths,
                     css: [{ raw: bundle[file]["source"] }],
                     safelist: options?.safelist || [],
+                    extractors: options?.extractors || [],
                 })
                 bundle[file]["source"] = purged[0].css
             }
