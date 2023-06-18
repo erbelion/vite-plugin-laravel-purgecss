@@ -84,13 +84,37 @@ export default {
 }
 ```
 
+**Fix for escaped prefixes (`sm:`, `lg:`, etc)**
+```
+export default {
+    plugins: [
+        laravel(...),
+        purge({
+            paths: [
+                'resources/views/**/*.blade.php',
+            ],
+        extractors: [
+                {
+                    extractor: (content) => {
+                        return content.match(/[A-Za-z0-9-_:\/]+/g) || []
+                    },
+                    extensions: ['css', 'html', 'vue', 'php'],
+                },
+            ],
+        })
+    ]
+}
+```
+
 ## Options
 
 | Parameter                | Type                  | Description                                                                                           |
 | ------------------------ | --------------------- | ----------------------------------------------------------------------------------------------------- |
-| [templates](#templates)? | `string[]`            | List of ready paths to be processed by PurgeCSS. [See below](#templates).                               |
+| [templates](#templates)? | `string[]`            | List of ready paths to be processed by PurgeCSS. [See below](#templates).                             |
 | paths?                   | `string[]`            | List of paths to be processed by PurgeCSS.                                                            |
 | safelist?                | `UserDefinedSafelist` | Check available safelist options in [PurgeCSS docs](https://purgecss.com/configuration.html#options). |
+| extractors?              | `Extractors[]`        | Provide more accuracy [PurgeCSS docs](https://purgecss.com/extractors.html).                          |
+
 
 ### Templates
 
