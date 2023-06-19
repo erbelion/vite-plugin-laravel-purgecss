@@ -97,7 +97,7 @@ purge({
     extractors: [
         {
             extractor: (content) => {
-                return content.match(/[A-Za-z0-9-_:\/]+/g) || []
+                return content.match(/[a-z-_:\/]+/g) || []
             },
             extensions: ['php', 'vue', 'html']
         }
