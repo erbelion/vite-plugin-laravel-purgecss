@@ -36,7 +36,7 @@ export default {
 }
 ```
 
-**[See more examples](#examples)**
+**[See more examples](#other-examples)**
 
 ## Options
 
