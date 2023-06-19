@@ -4,7 +4,7 @@
 
 A [Vite](https://github.com/vitejs/vite) plugin that integrates [PurgeCSS](https://github.com/FullHuman/purgecss) with [Laravel 10/9](https://github.com/laravel/laravel) template assets (currently updated to 10.13).
 
-It purges assets only on production mode (`yarn build`/`npm run build`).
+It purges assets only in production mode (`yarn build`/`npm run build`).
 
 ## Installation
 
@@ -20,11 +20,9 @@ yarn add -D @erbelion/vite-plugin-laravel-purgecss
 npm i -D @erbelion/vite-plugin-laravel-purgecss
 ```
 
-## Usage examples
+## Usage
 
 Use plugin in your Vite config (`vite.config.ts`)
-
-**Blade via [template option](#templates):**
 ```
 import purge from '@erbelion/vite-plugin-laravel-purgecss'
 
@@ -38,59 +36,17 @@ export default {
 }
 ```
 
-**Vue via [template option](#templates):**
-```
-import purge from '@erbelion/vite-plugin-laravel-purgecss'
-
-export default {
-    plugins: [
-        laravel(...),
-        purge({
-            templates: ['blade', 'vue']
-        })
-    ]
-}
-```
-
-**Via custom path:**
-```
-import purge from '@erbelion/vite-plugin-laravel-purgecss'
-
-export default {
-    plugins: [
-        laravel(...),
-        purge({
-            paths: ['resources/views/**/*.blade.php']
-        })
-    ]
-}
-```
-
-**Via custom paths + always keep `#bruh`, `.nice-button` and `h1` styling:**
-```
-import purge from '@erbelion/vite-plugin-laravel-purgecss'
-
-export default {
-    plugins: [
-        laravel(...),
-        purge({
-            paths: [
-                'resources/views/**/*.blade.php',
-                'resources/{js,views}/**/*.vue'
-            ],
-            safelist: ['bruh', 'nice-button', 'h1']
-        })
-    ]
-}
-```
+**[See more examples](#examples)**
 
 ## Options
 
 | Parameter                | Type                  | Description                                                                                           |
 | ------------------------ | --------------------- | ----------------------------------------------------------------------------------------------------- |
-| [templates](#templates)? | `string[]`            | List of ready paths to be processed by PurgeCSS. [See below](#templates).                               |
+| [templates](#templates)? | `string[]`            | List of ready paths to be processed by PurgeCSS. [See below](#templates).                             |
 | paths?                   | `string[]`            | List of paths to be processed by PurgeCSS.                                                            |
 | safelist?                | `UserDefinedSafelist` | Check available safelist options in [PurgeCSS docs](https://purgecss.com/configuration.html#options). |
+| extractors?              | `Extractors[]`        | Check available extractors options in [PurgeCSS docs](https://purgecss.com/extractors.html#using-an-extractor).                          |
+
 
 ### Templates
 
@@ -103,6 +59,51 @@ export default {
 | angular   | `resources/{js,views}/**/*.html`                 |
 
 You may also provide custom paths via `paths` option.
+
+## Other examples
+
+**Vue via template option:**
+```
+purge({
+    templates: ['blade', 'vue']
+})
+```
+
+**Via custom path:**
+```
+purge({
+    paths: ['resources/views/**/*.blade.php']
+})
+```
+
+**Via custom paths + always keep `#bruh`, `.nice-button` and `h1` styling:**
+```
+purge({
+    paths: [
+        'resources/views/**/*.blade.php',
+        'resources/{js,views}/**/*.vue'
+    ],
+    safelist: ['bruh', 'nice-button', 'h1']
+})
+```
+
+**Example config with fix for escaped prefixes (`sm:`, `lg:`, etc.):**
+```
+purge({
+    paths: [
+        'resources/views/**/*.blade.php',
+        'resources/{js,views}/**/*.vue'
+    ],
+    extractors: [
+        {
+            extractor: (content) => {
+                return content.match(/[A-Za-z0-9-_:\/]+/g) || []
+            },
+            extensions: ['php', 'vue', 'html']
+        }
+    ]
+})
+```
 
 ## See also
 
