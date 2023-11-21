@@ -107,7 +107,7 @@ purge({
 
 ## Tutorial
 
-[https://github.com/erbelion/tutorial-vite-plugin-laravel-purgecss](https://github.com/erbelion/tutorial-vite-plugin-laravel-purgecss)
+[https://github.com/erbelion/tutorial-vite-plugin-laravel-purgecss](https://github.com/erbelion/tutorial-vite-plugin-laravel-purgecss#tutorial-vite-plugin-laravel-purgecss)
 
 ## See also
 
