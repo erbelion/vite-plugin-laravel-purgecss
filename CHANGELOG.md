@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.3
+- added postcss^8.4.31 requirement to avoid vulnerability [(more info here)](https://github.com/erbelion/vite-plugin-laravel-purgecss/issues/7)
+
 ## 0.2.2
 - @naykel76 added extractors
 
