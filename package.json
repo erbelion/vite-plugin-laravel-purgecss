@@ -31,14 +31,13 @@
 		"build": "tsup src/index.ts --format esm,cjs --dts"
 	},
 	"devDependencies": {
-		"@types/node": "^16.10.8",
+		"@types/node": "^20.0.0",
 		"tsup": "^5.4.0",
 		"typescript": "^4.4.4"
 	},
 	"dependencies": {
-		"purgecss": "^5.0.0",
-		"vite": "^4.3.9",
-		"postcss": "^8.4.31"
-	},
-	"peerDependencies": {}
+		"postcss": "^8.4.31",
+		"purgecss": "^6.0.0",
+		"vite": "^5.0.0"
+	}
 }
