@@ -34,7 +34,7 @@ export default {
 }
 ```
 
-**[See more examples](#other-examples)**
+**[See more examples](#💡-other-examples)**
 
 ## 🛠️ Options
 
