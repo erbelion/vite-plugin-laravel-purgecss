@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0
+- added every purgecss option (earlier we only had safelist and extractors)
+- @edwinvdpol bumped the vite (➡️ ^5.4.10) and purgecss (➡️ ^6.0.0) versions
+- now more vite versions are compatible with the plugin (^4.0.0 ➡️ >=3 <6)
+- deprecated `templates` option to simplify the plugin
+
 ## 0.2.4
 - updated readme to laravel@11.0.7
 
