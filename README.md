@@ -6,7 +6,7 @@ A [Vite](https://github.com/vitejs/vite) plugin that integrates [PurgeCSS](https
 
 It purges assets only in production mode (`yarn build`/`npm run build`).
 
-## Installation
+## 📦 Installation
 
 **yarn**
 
@@ -20,7 +20,7 @@ yarn add @erbelion/vite-plugin-laravel-purgecss
 npm i @erbelion/vite-plugin-laravel-purgecss
 ```
 
-## Usage
+## 🚀 Usage
 
 Use plugin in your Vite config (`vite.config.ts`)
 ```
@@ -29,50 +29,56 @@ import purge from '@erbelion/vite-plugin-laravel-purgecss'
 export default {
     plugins: [
         laravel(...),
-        purge({
-            templates: ['blade']
-        })
+        purge()
     ]
 }
 ```
 
 **[See more examples](#other-examples)**
 
-## Options
+## 🛠️ Options
 
-| Parameter                | Type                  | Description                                                                                           |
-| ------------------------ | --------------------- | ----------------------------------------------------------------------------------------------------- |
-| [templates](#templates)? | `string[]`            | List of ready paths to be processed by PurgeCSS. [See below](#templates).                             |
-| paths?                   | `string[]`            | List of paths to be processed by PurgeCSS.                                                            |
-| safelist?                | `UserDefinedSafelist` | Check available safelist options in [PurgeCSS docs](https://purgecss.com/configuration.html#options). |
-| extractors?              | `Extractors[]`        | Check available extractors options in [PurgeCSS docs](https://purgecss.com/extractors.html#using-an-extractor).                          |
+| Parameter                | Type                  | Optional                  | Description                                                                                           |
+| ------------------------ | --------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------- |
+| paths                   | `string[]`            | yes | List of paths to be processed by PurgeCSS.     
+| PurgeCSS Options                | `Partial<UserDefinedOptions>` | yes | PurgeCSS options [(see docs)](https://purgecss.com/configuration.html#options). |
+| templates                   | `string[]`            | yes  | ❌ deprecated [(see anyway)](https://github.com/erbelion/vite-plugin-laravel-purgecss/blob/main/src/deprecated/DEPRECATED-OPTIONS.md).                                                         |
 
+### `paths` option
+If `paths` option isn't specified, it will default to:
+`resources/{js,views}/**/*.{blade.php,svelte,vue,html}`
 
-### Templates
+### All options
 
-| Parameter | Path to be processed                             |
-| --------- | ------------------------------------------------ |
-| blade     | `resources/views/**/*.blade.php`                 |
-| svelte    | `resources/{js,views}/**/*.svelte`               |
-| vue       | `resources/{js,views}/**/*.vue`                  |
-| react     | `resources/{js,views}/**/*.{tsx,ts,jsx,js,html}` |
-| angular   | `resources/{js,views}/**/*.html`                 |
-
-You may also provide custom paths via `paths` option.
-
-## Other examples
-
-**Vue via template option:**
 ```
-purge({
-    templates: ['blade', 'vue']
-})
+type Options = {
+  
+  // plugin options
+  paths?: string[]
+  templates?: string[] // ❌ deprecated
+  
+  // purgecss options
+  defaultExtractor?: ExtractorFunction
+  extractors?: Array<Extractors>
+  fontFace?: boolean
+  keyframes?: boolean
+  output?: string
+  rejected?: boolean
+  rejectedCss?: boolean
+  stdin?: boolean
+  stdout?: boolean
+  variables?: boolean
+  safelist?: UserDefinedSafelist
+  blocklist?: StringRegExpArray
+}
 ```
+
+## 💡 Other examples
 
 **Via custom path:**
 ```
 purge({
-    paths: ['resources/views/**/*.blade.php']
+    paths: ['resources/{js,views}/**/*.{blade.php,svelte,vue,html}']
 })
 ```
 
@@ -90,10 +96,6 @@ purge({
 **Example config with fix for escaped prefixes (`sm:`, `lg:`, etc.):**
 ```
 purge({
-    paths: [
-        'resources/views/**/*.blade.php',
-        'resources/{js,views}/**/*.vue'
-    ],
     extractors: [
         {
             extractor: (content) => {
@@ -105,10 +107,10 @@ purge({
 })
 ```
 
-## Tutorial
+## 📚 Tutorial
 
 [https://github.com/erbelion/tutorial-vite-plugin-laravel-purgecss](https://github.com/erbelion/tutorial-vite-plugin-laravel-purgecss#tutorial-vite-plugin-laravel-purgecss)
 
-## See also
+## 👉 See also
 
 [vite-plugin-sveltekit-purgecss](https://github.com/erbelion/vite-plugin-sveltekit-purgecss)
