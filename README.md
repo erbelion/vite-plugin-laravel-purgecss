@@ -23,6 +23,7 @@ npm i @erbelion/vite-plugin-laravel-purgecss
 ## Usage
 
 Use plugin in your Vite config (`vite.config.ts`)
+
 ```
 import purge from '@erbelion/vite-plugin-laravel-purgecss'
 
@@ -40,13 +41,12 @@ export default {
 
 ## Options
 
-| Parameter                | Type                  | Description                                                                                           |
-| ------------------------ | --------------------- | ----------------------------------------------------------------------------------------------------- |
-| [templates](#templates)? | `string[]`            | List of ready paths to be processed by PurgeCSS. [See below](#templates).                             |
-| paths?                   | `string[]`            | List of paths to be processed by PurgeCSS.                                                            |
-| safelist?                | `UserDefinedSafelist` | Check available safelist options in [PurgeCSS docs](https://purgecss.com/configuration.html#options). |
-| extractors?              | `Extractors[]`        | Check available extractors options in [PurgeCSS docs](https://purgecss.com/extractors.html#using-an-extractor).                          |
-
+| Parameter                | Type                  | Description                                                                                                     |
+| ------------------------ | --------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [templates](#templates)? | `string[]`            | List of ready paths to be processed by PurgeCSS. [See below](#templates).                                       |
+| paths?                   | `string[]`            | List of paths to be processed by PurgeCSS.                                                                      |
+| safelist?                | `UserDefinedSafelist` | Check available safelist options in [PurgeCSS docs](https://purgecss.com/configuration.html#options).           |
+| extractors?              | `Extractors[]`        | Check available extractors options in [PurgeCSS docs](https://purgecss.com/extractors.html#using-an-extractor). |
 
 ### Templates
 
@@ -63,6 +63,7 @@ You may also provide custom paths via `paths` option.
 ## Other examples
 
 **Vue via template option:**
+
 ```
 purge({
     templates: ['blade', 'vue']
@@ -70,6 +71,7 @@ purge({
 ```
 
 **Via custom path:**
+
 ```
 purge({
     paths: ['resources/views/**/*.blade.php']
@@ -77,6 +79,7 @@ purge({
 ```
 
 **Via custom paths + always keep `#bruh`, `.nice-button` and `h1` styling:**
+
 ```
 purge({
     paths: [
@@ -88,6 +91,7 @@ purge({
 ```
 
 **Example config with fix for escaped prefixes (`sm:`, `lg:`, etc.):**
+
 ```
 purge({
     paths: [
