@@ -13,7 +13,7 @@ export default (_options?: Options): Plugin => {
         name: "vite-plugin-laravel-purgecss",
         enforce: "post",
         async generateBundle(_, bundle: OutputBundle) {
-            const {paths, purge: purgeOptions} = filterOptions(_options)
+            const { paths, purge: purgeOptions } = filterOptions(_options)
 
             const cssFiles = Object.keys(bundle).filter((key) =>
                 key.endsWith(".css")
@@ -26,10 +26,10 @@ export default (_options?: Options): Plugin => {
                 const purged = await new PurgeCSS().purge({
                     content: paths,
                     css: [{ raw: bundle[file]["source"] }],
-                    ...purgeOptions
+                    ...purgeOptions,
                 })
                 bundle[file]["source"] = purged[0].css
             }
-        }
+        },
     }
 }

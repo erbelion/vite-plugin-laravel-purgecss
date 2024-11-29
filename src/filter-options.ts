@@ -12,18 +12,18 @@ export default (options?: Options): FilteredOptions => {
     paths.concat(processTemplates(options?.templates))
 
     // if paths are empty, put default value
-    if(paths.length === 0){
+    if (paths.length === 0) {
         paths.push("resources/{js,views}/**/*.{blade.php,svelte,vue,html}")
     }
 
     const purgeOptions = options
-    const keysToDelete = ['css', 'content', 'paths', 'templates']
+    const keysToDelete = ["css", "content", "paths", "templates"]
     if (purgeOptions) {
-        keysToDelete.forEach(key => delete options[key])
+        keysToDelete.forEach((key) => delete options[key])
     }
 
     return {
         paths: paths,
-        purge: purgeOptions
+        purge: purgeOptions,
     }
 }
