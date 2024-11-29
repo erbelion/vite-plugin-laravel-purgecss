@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.3
+
+-   fixed path defaulting
+
 ## 0.3.0
 
 -   added every purgecss option (earlier we only had safelist and extractors)
