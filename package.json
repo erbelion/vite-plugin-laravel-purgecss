@@ -1,6 +1,6 @@
 {
 	"name": "@erbelion/vite-plugin-laravel-purgecss",
-	"version": "0.3.3",
+	"version": "0.4.0",
 	"description": "A Vite plugin that integrates PurgeCSS with Laravel template assets.",
 	"author": "erbelion",
 	"keywords": [
