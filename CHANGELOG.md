@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+
+-   support vite 6
+
 ## 0.3.3
 
 -   fixed path defaulting
