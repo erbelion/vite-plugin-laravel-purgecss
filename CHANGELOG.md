@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.4
+
+-   @jochensengier and @iBotPeaches bumped the vite (➡️ ^6.0.3) version
+
 ## 0.3.3
 
 -   fixed path defaulting
