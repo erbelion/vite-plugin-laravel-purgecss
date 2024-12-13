@@ -23,6 +23,7 @@ npm i @erbelion/vite-plugin-laravel-purgecss
 ## 🚀 Usage
 
 Use plugin in your Vite config (`vite.config.ts`)
+
 ```
 import purge from '@erbelion/vite-plugin-laravel-purgecss'
 
@@ -34,17 +35,18 @@ export default {
 }
 ```
 
-**[See more examples](#💡-other-examples)**
+**[See more examples](#-other-examples)**
 
 ## 🛠️ Options
 
-| Parameter                | Type                  | Optional                  | Description                                                                                           |
-| ------------------------ | --------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------- |
-| paths                   | `string[]`            | yes | List of paths to be processed by PurgeCSS.     
-| PurgeCSS Options                | `Partial<UserDefinedOptions>` | yes | PurgeCSS options [(see docs)](https://purgecss.com/configuration.html#options). |
-| templates                   | `string[]`            | yes  | ❌ deprecated [(see anyway)](https://github.com/erbelion/vite-plugin-laravel-purgecss/blob/main/src/deprecated/DEPRECATED-OPTIONS.md).                                                         |
+| Parameter        | Type                          | Optional | Description                                                                                                                            |
+| ---------------- | ----------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| paths            | `string[]`                    | yes      | List of paths to be processed by PurgeCSS.                                                                                             |
+| PurgeCSS Options | `Partial<UserDefinedOptions>` | yes      | PurgeCSS options [(see docs)](https://purgecss.com/configuration.html#options).                                                        |
+| templates        | `string[]`                    | yes      | ❌ deprecated [(see anyway)](https://github.com/erbelion/vite-plugin-laravel-purgecss/blob/main/src/deprecated/DEPRECATED-OPTIONS.md). |
 
 ### `paths` option
+
 If `paths` option isn't specified, it will default to:
 `resources/{js,views}/**/*.{blade.php,svelte,vue,html}`
 
@@ -52,11 +54,11 @@ If `paths` option isn't specified, it will default to:
 
 ```
 type Options = {
-  
+
   // plugin options
   paths?: string[]
   templates?: string[] // ❌ deprecated
-  
+
   // purgecss options
   defaultExtractor?: ExtractorFunction
   extractors?: Array<Extractors>
@@ -76,6 +78,7 @@ type Options = {
 ## 💡 Other examples
 
 **Via custom path:**
+
 ```
 purge({
     paths: ['resources/{js,views}/**/*.{blade.php,svelte,vue,html}']
@@ -83,6 +86,7 @@ purge({
 ```
 
 **Via custom paths + always keep `#bruh`, `.nice-button` and `h1` styling:**
+
 ```
 purge({
     paths: [
@@ -94,6 +98,7 @@ purge({
 ```
 
 **Example config with fix for escaped prefixes (`sm:`, `lg:`, etc.):**
+
 ```
 purge({
     extractors: [
