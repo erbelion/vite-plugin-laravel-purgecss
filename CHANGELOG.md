@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.4.0
+## 0.3.4
 
--   support vite 6
+-   @jochensengier and @iBotPeaches bumped the vite (➡️ ^6.0.3) version
 
 ## 0.3.3
 
