@@ -1,7 +1,7 @@
 import { Options } from "./types"
 import { Plugin } from "vite"
 import { PurgeCSS } from "purgecss"
-import { OutputBundle, OutputAsset } from "vite/node_modules/rollup/dist/rollup"
+import { OutputBundle, OutputAsset } from "rollup"
 import filterOptions from "./filter-options"
 
 const isOutputAsset = (
