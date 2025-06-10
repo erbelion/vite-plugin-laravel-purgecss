@@ -2,7 +2,7 @@ import { Options, FilteredOptions } from "./types"
 import processTemplates from "./deprecated/templates/process-templates"
 
 export default (options?: Options): FilteredOptions => {
-    const paths = []
+    const paths: string[] = []
 
     // adding paths
     options?.paths?.forEach((path) => paths.push(path))
@@ -16,14 +16,19 @@ export default (options?: Options): FilteredOptions => {
         paths.push("resources/{js,views}/**/*.{blade.php,svelte,vue,html}")
     }
 
+    // rehash option
+    const rehash = options?.rehash !== undefined ? options.rehash : true
+
+    // preparing PurgeCSS options
     const purgeOptions = options
-    const keysToDelete = ["css", "content", "paths", "templates"]
+    const keysToDelete = ["css", "content", "paths", "templates", "rehash"]
     if (purgeOptions) {
-        keysToDelete.forEach((key) => delete options[key])
+        keysToDelete.forEach((key) => delete purgeOptions[key])
     }
 
     return {
-        paths: paths,
-        purge: purgeOptions,
+        paths,
+        purgeOptions,
+        rehash,
     }
 }

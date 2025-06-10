@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0
+
+-   added asset filenames hashing after css purging to reflect content changes. the filenames now include a hash of the purged css content to ensure cache busting. this behavior can be disabled via the rehash option (default: true).
+-   @edwinvdpol bumped the vite (➡️ ^6.3.5) and tsup (➡️ ^8.3.5) versions, resolving [security vulnerabilities](https://github.com/erbelion/vite-plugin-laravel-purgecss/pull/10#issue-3120661118)
+-   minor changes
+
 ## 0.3.4
 
 -   @jochensengier and @iBotPeaches bumped the vite (➡️ ^6.0.3) version
