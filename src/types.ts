@@ -2,6 +2,7 @@ import { UserDefinedOptions } from "purgecss"
 
 type PluginOptions = {
     paths?: string[]
+    rehash?: boolean
 }
 
 type EntryPluginOptions = PluginOptions & {
@@ -11,5 +12,5 @@ type EntryPluginOptions = PluginOptions & {
 export type Options = EntryPluginOptions & Partial<UserDefinedOptions>
 
 export type FilteredOptions = PluginOptions & {
-    purge: Partial<UserDefinedOptions>
+    purgeOptions: Partial<UserDefinedOptions>
 }
