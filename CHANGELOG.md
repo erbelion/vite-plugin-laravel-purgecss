@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+-   @jochensengier bumped the vite (➡️ ^7.0.6) version
+
 ## 0.4.0
 
 -   added asset filenames hashing after css purging to reflect content changes. the filenames now include a hash of the purged css content to ensure cache busting. this behavior can be disabled via the rehash option (default: true).
