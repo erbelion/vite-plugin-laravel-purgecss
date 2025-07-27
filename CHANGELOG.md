@@ -3,6 +3,8 @@
 ## 0.4.1
 
 -   @jochensengier bumped the vite (➡️ ^7.0.6) version
+-   bumped the purgecss (➡️ ^7.0.2) version
+-   yarn ➡️ pnpm
 
 ## 0.4.0
 

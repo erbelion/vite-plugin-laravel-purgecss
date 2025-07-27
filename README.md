@@ -4,11 +4,17 @@
 
 A [Vite](https://github.com/vitejs/vite) plugin that integrates [PurgeCSS](https://github.com/FullHuman/purgecss) with [Laravel 9-12](https://github.com/laravel/laravel) template assets (currently updated up to laravel/laravel@12.0.9).
 
-This plugin purges unused CSS assets only in production mode (`yarn build` / `npm run build`).
+This plugin purges unused CSS assets only in production mode (`pnpm build` / `yarn build` / `npm run build`).
 
 ## 📦 Installation
 
-**Using Yarn:**
+**Using pnpm:**
+
+```bash
+pnpm add @erbelion/vite-plugin-laravel-purgecss
+```
+
+**Using yarn:**
 
 ```bash
 yarn add @erbelion/vite-plugin-laravel-purgecss
