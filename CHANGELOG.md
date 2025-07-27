@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.5.0
+## 0.4.1
 
 -   @jochensengier bumped the vite (➡️ ^7.0.6) version
 
