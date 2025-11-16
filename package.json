@@ -41,7 +41,7 @@
         "purgecss": "^7.0.2"
     },
     "peerDependencies": {
-        "vite": ">=3 <=7"
+        "vite": ">=3"
     },
     "packageManager": "pnpm@10.12.4"
 }
