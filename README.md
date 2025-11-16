@@ -11,19 +11,19 @@ This plugin purges unused CSS assets only in production mode (`pnpm build` / `ya
 **Using pnpm:**
 
 ```bash
-pnpm add @erbelion/vite-plugin-laravel-purgecss
+pnpm add -D @erbelion/vite-plugin-laravel-purgecss
 ```
 
 **Using yarn:**
 
 ```bash
-yarn add @erbelion/vite-plugin-laravel-purgecss
+yarn add -D @erbelion/vite-plugin-laravel-purgecss
 ```
 
 **Using npm:**
 
 ```bash
-npm i @erbelion/vite-plugin-laravel-purgecss
+npm i -D @erbelion/vite-plugin-laravel-purgecss
 ```
 
 ## 🚀 Usage
