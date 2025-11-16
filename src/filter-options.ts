@@ -1,15 +1,21 @@
+import type { UserDefinedOptions } from "purgecss"
 import { Options, FilteredOptions } from "./types"
-import processTemplates from "./deprecated/templates/process-templates"
+import processDeprecatedTemplates from "./deprecated/templates/process-templates"
 
 export default (options?: Options): FilteredOptions => {
     const paths: string[] = []
 
     // adding paths
-    options?.paths?.forEach((path) => paths.push(path))
+    options?.paths?.forEach((path) => {
+        if (path) paths.push(path)
+    })
 
     // @deprecated
     // adding templates to paths
-    paths.concat(processTemplates(options?.templates))
+    const templates = processDeprecatedTemplates(options?.templates)
+    if (templates.length) {
+        paths.push(...templates)
+    }
 
     // if paths are empty, put default value
     if (paths.length === 0) {
@@ -17,14 +23,14 @@ export default (options?: Options): FilteredOptions => {
     }
 
     // rehash option
-    const rehash = options?.rehash !== undefined ? options.rehash : true
+    const rehash = options?.rehash ?? true
 
     // preparing PurgeCSS options
-    const purgeOptions = options
     const keysToDelete = ["css", "content", "paths", "templates", "rehash"]
-    if (purgeOptions) {
-        keysToDelete.forEach((key) => delete purgeOptions[key])
-    }
+    const purgeOptions: Partial<UserDefinedOptions> = { ...(options ?? {}) }
+    keysToDelete.forEach((key) => {
+        delete (purgeOptions as Record<string, unknown>)[key]
+    })
 
     return {
         paths,
