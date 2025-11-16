@@ -1,16 +1,16 @@
-import { UserDefinedOptions } from "purgecss"
+import type { UserDefinedOptions } from "purgecss"
 
-type PluginOptions = {
+interface PluginOptions {
     paths?: string[]
     rehash?: boolean
 }
 
-type EntryPluginOptions = PluginOptions & {
+interface EntryPluginOptions extends PluginOptions {
     templates?: string[]
 }
 
 export type Options = EntryPluginOptions & Partial<UserDefinedOptions>
 
-export type FilteredOptions = PluginOptions & {
+export interface FilteredOptions extends PluginOptions {
     purgeOptions: Partial<UserDefinedOptions>
 }

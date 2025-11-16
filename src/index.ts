@@ -1,17 +1,10 @@
-import { Plugin } from "vite"
+import type { Plugin } from "vite"
 import { PurgeCSS } from "purgecss"
-import { OutputBundle, OutputAsset } from "rollup"
-import crypto from "crypto"
+import type { OutputBundle } from "rollup"
 
-import { Options } from "./types"
+import type { Options } from "./types"
 import filterOptions from "./filter-options"
-
-const isOutputAsset = (
-    bundle: OutputBundle[keyof OutputBundle]
-): bundle is OutputAsset => bundle.type === "asset"
-
-const hash = (content: string) =>
-    crypto.createHash("sha256").update(content).digest("hex").slice(0, 8)
+import { isOutputAsset, hash } from "./utils"
 
 export default (_options?: Options): Plugin => {
     return {
@@ -24,7 +17,7 @@ export default (_options?: Options): Plugin => {
             const cssFiles = Object.keys(bundle).filter((key) =>
                 key.endsWith(".css")
             )
-            if (!cssFiles) return
+            if (cssFiles.length === 0) return
 
             // process each css file in the bundle
             for (const file of cssFiles) {
@@ -38,7 +31,7 @@ export default (_options?: Options): Plugin => {
                     ...purgeOptions,
                 })
 
-                const newCss = purged[0].css
+                const newCss = purged[0]?.css ?? ""
 
                 // update the asset in the bundle without rehashing
                 if (!rehash) {
