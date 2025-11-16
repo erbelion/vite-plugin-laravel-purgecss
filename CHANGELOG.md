@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.3
+
+-   general refactor
+-   widened peerDependencies for vite ("vite": "&gt;=3 &lt;=7" ➡️ "&gt;=3") to keep compatibility with future vite 8+
+-   README: use -D in install commands (dev dependency; not needed at runtime)
+
 ## 0.4.2
 
 -   @jochensengier bumped the vite (➡️ ^7.0.6) version
