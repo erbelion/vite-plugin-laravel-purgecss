@@ -1,9 +1,11 @@
 import crypto from "crypto"
-import type { OutputBundle, OutputAsset } from "rollup"
+
+type OutputChunkLike = { type: "chunk" }
+type OutputAssetLike = { type: "asset"; source: string | Uint8Array }
 
 export const isOutputAsset = (
-    bundle: OutputBundle[keyof OutputBundle]
-): bundle is OutputAsset => bundle.type === "asset"
+    bundle: OutputChunkLike | OutputAssetLike,
+): bundle is OutputAssetLike => bundle.type === "asset"
 
 export const hash = (content: string, length = 8) =>
     crypto.createHash("sha256").update(content).digest("hex").slice(0, length)

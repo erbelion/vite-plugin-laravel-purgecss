@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.8
+
+- migrated from `generateBundle` bundle key assignment to in-place `asset.source` mutation for Rolldown compatibility
+- updated `rehash` option and made it experimental. now it patches `manifest.json` on disk after Vite writes it; opt-in only, now disabled by default
+- changed OutputAsset and OutputChunk separation method in utils.ts for Rolldown compatibility
+- updated all dev dependencies
+- updated tsconfig.json
+
 ## 0.4.7
 
 - bumped the purgecss (➡️ ^8.0.0) version

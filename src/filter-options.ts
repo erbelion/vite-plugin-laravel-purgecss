@@ -14,6 +14,9 @@ export default (options?: Options): FilteredOptions => {
     // adding templates to paths
     const templates = processDeprecatedTemplates(options?.templates)
     if (templates.length) {
+        console.warn(
+            `\n[@erbelion/vite-plugin-laravel-purgecss] ⚠️  The "templates" option is deprecated and will be removed in a future release. Please use "paths" instead.`,
+        )
         paths.push(...templates)
     }
 
@@ -22,8 +25,14 @@ export default (options?: Options): FilteredOptions => {
         paths.push("resources/{js,views}/**/*.{blade.php,svelte,vue,html}")
     }
 
+    // @experimental
     // rehash option
-    const rehash = options?.rehash ?? true
+    const rehash = options?.rehash ?? false
+    if (rehash) {
+        console.warn(
+            `\n[@erbelion/vite-plugin-laravel-purgecss] ⚠️  The "rehash" option is experimental - it patches manifest.json on disk after Vite writes it. Behaviour may break across Vite versions.`,
+        )
+    }
 
     // preparing PurgeCSS options
     const keysToDelete = ["css", "content", "paths", "templates", "rehash"]

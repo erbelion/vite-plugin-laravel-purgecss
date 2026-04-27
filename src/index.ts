@@ -1,21 +1,33 @@
-import type { Plugin } from "vite"
+import type { Plugin, ResolvedConfig } from "vite"
 import { PurgeCSS } from "purgecss"
-import type { OutputBundle } from "rollup"
 
 import type { Options } from "./types"
 import filterOptions from "./filter-options"
-import { isOutputAsset, hash } from "./utils"
+import { isOutputAsset } from "./utils"
+import rehasher from "./experimental/rehasher"
 
 export default (_options?: Options): Plugin => {
+    const renamedFiles = new Map<string, string>()
+    let outDir: string
+    let shouldRehash: boolean
+
     return {
         name: "vite-plugin-laravel-purgecss",
         enforce: "post",
-        async generateBundle(_, bundle: OutputBundle) {
-            const { paths, purgeOptions, rehash } = filterOptions(_options)
+
+        configResolved(config: ResolvedConfig) {
+            outDir = config.build.outDir
+        },
+
+        async generateBundle(_, bundle) {
+            renamedFiles.clear()
+
+            const { paths, purgeOptions } = filterOptions(_options)
+            shouldRehash = _options.rehash
 
             // identify css files within the bundle
             const cssFiles = Object.keys(bundle).filter((key) =>
-                key.endsWith(".css")
+                key.endsWith(".css"),
             )
             if (cssFiles.length === 0) return
 
@@ -33,27 +45,20 @@ export default (_options?: Options): Plugin => {
 
                 const newCss = purged[0]?.css ?? ""
 
-                // update the asset in the bundle without rehashing
-                if (!rehash) {
-                    asset.source = newCss
-                    continue
-                }
+                asset.source = newCss
 
-                // create a new file name with a hash of the purged css
-                const newFileName = file.replace(
-                    /\.css$/,
-                    `-${hash(newCss)}.css`
-                )
-
-                // remove the old asset and add the new, hashed asset to the bundle
-                delete bundle[file]
-                bundle[newFileName] = {
-                    ...asset,
-                    fileName: newFileName,
-                    source: newCss,
-                    type: "asset",
-                }
+                if (shouldRehash)
+                    rehasher.renameFile(renamedFiles, file, newCss)
             }
+        },
+
+        async writeBundle(_, bundle) {
+            if (shouldRehash)
+                await rehasher.applyToManifest(
+                    renamedFiles,
+                    Object.keys(bundle),
+                    outDir,
+                )
         },
     }
 }
